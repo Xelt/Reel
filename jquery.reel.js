@@ -1542,8 +1542,10 @@
                           revolution= get(_revolution_),
                           origin= get(_clicked_location_),
                           vertical= get(_vertical_)
-                        if (!get(_framelock_)) var
-                          fraction= set(_fraction_, graph(vertical ? y - origin.y : x - origin.x, get(_clicked_on_), revolution, get(_lo_), get(_hi_), get(_cwish_), vertical ? y - origin.y : x - origin.x)),
+                        if (!get(_framelock_))
+                        var targetRect = e.target.getBoundingClientRect();
+                        var
+                          fraction= set(_fraction_, (x-targetRect.left) / (targetRect.right - targetRect.left)),
                           reeling= set(_reeling_, get(_reeling_) || get(_frame_) != get(_clicked_)),
                           motion= to_bias(vertical ? delta.y : delta.x || 0),
                           backwards= motion && set(_backwards_, motion < 0)
